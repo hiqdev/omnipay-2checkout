@@ -1,0 +1,5 @@
+package:
+    type: project
+    name: omnipay-2checkout
+    title: 'Omnipay 2checkout'
+    keywords: 'omnipay, 2checkout'
