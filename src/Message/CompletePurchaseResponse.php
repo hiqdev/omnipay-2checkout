@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Omnipay\TwoCheckout\Message;
 
+use DateTimeImmutable;
 use Omnipay\Common\Exception\InvalidResponseException;
 use Omnipay\Common\Message\AbstractResponse;
 use Omnipay\Common\Message\RequestInterface;
@@ -61,6 +62,11 @@ class CompletePurchaseResponse extends AbstractResponse
     public function getTransactionReference()
     {
         return $this->data['sale_id'];
+    }
+
+    public function getPayTime()
+    {
+        return new DateTimeImmutable('@' . strtotime($this->data['sale_date_placed']));
     }
 
     public function isSuccessful()

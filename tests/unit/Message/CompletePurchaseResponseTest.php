@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Omnipay\TwoCheckout\Tests\unit\Message;
 
+use DateTimeImmutable;
 use Omnipay\Tests\TestCase;
 use Omnipay\TwoCheckout\Message\CompletePurchaseRequest;
 use Omnipay\TwoCheckout\Message\CompletePurchaseResponse;
@@ -43,6 +44,10 @@ class CompletePurchaseResponseTest extends TestCase
         $this->assertSame($data['sale_id'], $response->getTransactionReference());
         $this->assertSame($data['invoice_list_amount'], $response->getAmount());
         $this->assertSame($data['list_currency'], $response->getCurrency());
+        $this->assertEquals(
+            new DateTimeImmutable('@' . strtotime($data['sale_date_placed'])),
+            $response->getPayTime()
+        );
         $this->assertNotEmpty($response->getPayer());
     }
 }

@@ -47,7 +47,8 @@
     "require-dev": {
         "omnipay/tests": "~2.0",
         "hiqdev/hidev-php": "dev-master",
-        "hiqdev/hidev-hiqdev": "dev-master"
+        "hiqdev/hidev-hiqdev": "dev-master",
+        "hiqdev/hidev-chkipper": "dev-master"
     },
     "minimum-stability": "dev",
     "autoload": {
