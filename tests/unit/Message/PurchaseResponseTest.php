@@ -27,11 +27,8 @@ class PurchaseResponseTest extends TestCase
         $this->assertTrue($response->isRedirect());
         $this->assertNull($response->getCode());
         $this->assertNull($response->getMessage());
-        $this->assertSame('GET', $response->getRedirectMethod());
-        $this->assertStringStartsWith('https://www.2checkout.com/checkout/purchase?', $response->getRedirectUrl());
-
-        $queryString = parse_url($response->getRedirectUrl(), PHP_URL_QUERY);
-        parse_str($queryString, $query);
+        $this->assertSame('POST', $response->getRedirectMethod());
+        $this->assertSame('https://www.2checkout.com/checkout/purchase', $response->getRedirectUrl());
 
         $this->assertSame([
             'x_receipt_link_url' => $returnUrl,
@@ -39,7 +36,7 @@ class PurchaseResponseTest extends TestCase
             'total' => $amount,
             'merchant_order_id' => $description,
             'cart_order_id' => $transactionId,
-            'id_type' => '1',
-        ], $query);
+            'id_type' => 1,
+        ], $response->getRedirectData());
     }
 }
